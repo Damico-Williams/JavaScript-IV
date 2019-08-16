@@ -13,11 +13,9 @@
  const mico = new Person({name:'Damico', location:'Long Beach'});
  console.log(mico.speak())
 
- class Instructor {
+ class Instructor extends Person {
      constructor(large){
-         this.name = large.name;
-         this.age = large.age;
-         this.location = large.location;
+         super(large)
          this.specialty = large.specialty;
          this.favLanguage = large.favLanguage;
          this.catchPhrase = large.catchPhrase;
@@ -25,8 +23,8 @@
      demo(subject){
          return `Today we are learning about ${this.favLanguage}.`
      };
-     grade(student){
-         return `${Student.name} receives a perfect score on ${this.favLanguage}`
+     grade(Student){
+         return `${Student.name} receives a perfect score on ${this.favSubjects}`
      }
  }
 
@@ -40,43 +38,43 @@
  })
 console.log(earl.demo())
 
-//  const kris = new Instructor ({
-//      name:'Kris',
-//      age:'29',
-//      location:'america',
-//      specialty:'Front-end',
-//      favLanguage:'python',
-//      catchPhrase:'Im red pilled'
-//  })
 
-//  class Student {
-//      constructor(medium){
-//          this.name = medium.name;
-//          this.age = medium.age;
-//          this.location = medium.location;
-//          this.previousBackground = medium.previousBackground;
-//          this.className = medium.className;
-//          this.favSubjects = medium.favSubjects;
-//      }
-//      listsSubjects(){
-//         `listsSubjects` a method that logs out all of the student's favoriteSubjects one by one.
-//      }
-//      PRAssignment(){
-//         `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
-//      }
-//      sprintChallenge(){
-//          console.log(`student.name has begun sprint challenge on {subject}`)
-//      }
-//  }
+ const kris = new Instructor ({
+     name:'Kris',
+     age:'29',
+     location:'america',
+     specialty:'Front-end',
+     favLanguage:'CSS',
+     catchPhrase:'Im red pilled'
+ })
+ console.log(kris.grade())
 
-//  const phil = new Student ({
-//     name:'Phil',
-//     age:28,
-//     location:'Japan',
-//     previousBackground:'coffee roaster',
-//     className:'and7',
-//     favSubjects:'Andriod development'
-// })
+ class Student extends Person {
+     constructor(medium){
+         super(medium)
+         this.previousBackground = medium.previousBackground;
+         this.className = medium.className;
+         this.favSubjects = medium.favSubjects;
+     }
+     listsSubjects(){
+        // `listsSubjects` a method that logs out all of the student's favoriteSubjects one by one.
+     }
+     PRAssignment(){
+        // `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
+     }
+     sprintChallenge(){
+         console.log(`student.name has begun sprint challenge on {subject}`)
+     }
+ }
+
+ const phil = new Student ({
+    name:'Phil',
+    age:28,
+    location:'Japan',
+    previousBackground:'coffee roaster',
+    className:'and7',
+    favSubjects:'Andriod development'
+})
 
 // const ted = new Student ({
 //     name:'Ted',
@@ -87,14 +85,9 @@ console.log(earl.demo())
 //     favSubjects:'HTML'
 // })
 
-//  class TeamLeads {
+//  class TeamLeads extends Instructor {
 //      constructor(small){
-//         this.name = large.name;
-//         this.age = large.age;
-//         this.location = large.location;
-//         this.specialty = large.specialty;
-//         this.favLanguage = large.favLanguage;
-//         this.catchPhrase = large.catchPhrase;
+//         super(small)
 //         this.gradClassName = small.gradClassName;
 //         this.favInstructor = small.favInstructor;
 //      }
@@ -112,7 +105,9 @@ console.log(earl.demo())
 //     location:'hong-kong',
 //     specialty:'Back-end',
 //     favLanguage:'C#',
-//     catchPhrase:'its boring like disneyland'
+//     catchPhrase:'its boring like disneyland',
+    //    gradClassName:'and7',
+    //    favInstructor:'kris'
 // })
 
 // const Sarah = new TeamLeads ({
@@ -121,5 +116,7 @@ console.log(earl.demo())
 //     location:'South Korea',
 //     specialty:'Front-end',
 //     favLanguage:'C',
-//     catchPhrase:'Each day I learn some more'
+//     catchPhrase:'Each day I learn some more',
+    //    gradClassName:'web8',
+    //    favInstructor:'earl'
 // })
