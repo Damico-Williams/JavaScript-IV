@@ -10,64 +10,110 @@
          return `Hello my name is ${this.name}, I am from ${this.location}.`
      };
  };
- const mico = new Person({name:'Damico', location:'Long Beach'});
- console.log(mico.speak())
+ const mico = new Person({name:'Damico', location:'Los Angeles'});
 
+ 
+ 
  class Instructor extends Person {
-     constructor(large){
-         super(large)
-         this.specialty = large.specialty;
-         this.favLanguage = large.favLanguage;
-         this.catchPhrase = large.catchPhrase;
+     constructor(teacher){
+         super(teacher)
+         this.specialty = teacher.specialty;
+         this.favLanguage = teacher.favLanguage;
+         this.catchPhrase = teacher.catchPhrase;
      }
      demo(subject){
-         return `Today we are learning about ${this.favLanguage}.`
+          return `Today we are learning about ${subject}.`
      };
      grade(Student){
-         return `${Student.name} receives a perfect score on ${this.favSubjects}`
+         return `${Student.name} receives a perfect score on ${Student.favSubjects}.`
      }
  }
 
- const earl = new Instructor ({
-     name:'Earl',
-     age:33, 
-     location:'philippines',
-     specialty: 'Back-end',
-     favLanguage:'cotlin',
-     catchPhrase:'ayo D-Dubs!'
- })
-console.log(earl.demo())
 
 
- const kris = new Instructor ({
-     name:'Kris',
-     age:'29',
-     location:'america',
-     specialty:'Front-end',
-     favLanguage:'CSS',
-     catchPhrase:'Im red pilled'
- })
- console.log(kris.grade())
-
- class Student extends Person {
-     constructor(medium){
-         super(medium)
-         this.previousBackground = medium.previousBackground;
-         this.className = medium.className;
-         this.favSubjects = medium.favSubjects;
+ class Student extends Instructor {
+     constructor(pupil){
+         super(pupil)
+         this.previousBackground = pupil.previousBackground;
+         this.className = pupil.className;
+         this.favSubjects = pupil.favSubjects;
      }
      listsSubjects(){
-        // `listsSubjects` a method that logs out all of the student's favoriteSubjects one by one.
+        return `${Student.favSubjects}`
      }
-     PRAssignment(){
-        // `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
+     PRAssignment(Student){
+        return `${Student.name} has submitted a PR for ${Student.favSubjects}`
      }
-     sprintChallenge(){
-         console.log(`student.name has begun sprint challenge on {subject}`)
+     sprintChallenge(Student){
+         return `${Student.name} has begun sprint challenge on ${Student.favSubjects}`
      }
  }
 
- const phil = new Student ({
+
+
+ class TeamLeads extends Instructor {
+     constructor(guide){
+        super(guide)
+        this.gradClassName = guide.gradClassName;
+        this.favInstructor = guide.favInstructor;
+     }
+     standUp(TeamLeads, channel){
+         return `${TeamLeads.name} announces to ${channel} , @channel standy times!`
+     }
+     debugsCode(name, Student, subject){
+         return `${name} debugs {Student.name}'s code on ${subject}`
+     }
+ }
+
+//Instructors
+const earl = new Instructor ({
+    name:'Earl',
+    age:33, 
+    location:'philippines',
+    specialty: 'Back-end',
+    favLanguage:'cotlin',
+    catchPhrase:'ayo D-Dubs!',
+    subject:'history'
+})
+
+
+
+const kris = new Instructor ({
+    name:'Kris',
+    age:'29',
+    location:'america',
+    specialty:'Front-end',
+    favLanguage:'CSS',
+    catchPhrase:'Im red pilled'
+})
+
+
+
+//Team Leads
+ const nicole = new TeamLeads ({
+    name:'Nico',
+    age:20,
+    location:'hong-kong',
+    specialty:'Back-end',
+    favLanguage:'C#',
+    catchPhrase:'its boring like disneyland',
+    gradClassName:'and7',
+    favInstructor:'kris'
+})
+
+const Sarah = new TeamLeads ({
+    name:'Sarah',
+    age:24,
+    location:'South Korea',
+    specialty:'Front-end',
+    favLanguage:'C',
+    catchPhrase:'Each day I learn some more',
+    gradClassName:'web8',
+    favInstructor:'earl'
+})
+
+//Students
+const phil = new Student ({
     name:'Phil',
     age:28,
     location:'Japan',
@@ -76,47 +122,20 @@ console.log(earl.demo())
     favSubjects:'Andriod development'
 })
 
-// const ted = new Student ({
-//     name:'Ted',
-//     age:36,
-//     location:'Japan',
-//     previousBackground:'astronaut',
-//     className:'web8',
-//     favSubjects:'HTML'
-// })
+const ted = new Student ({
+    name:'Ted',
+    age:36,
+    location:'Japan',
+    previousBackground:'astronaut',
+    className:'web8',
+    favSubjects:'HTML'
+})
 
-//  class TeamLeads extends Instructor {
-//      constructor(small){
-//         super(small)
-//         this.gradClassName = small.gradClassName;
-//         this.favInstructor = small.favInstructor;
-//      }
-//      standUp(){
-//          `{name} announces to {channel} , @channel standy times!`
-//      }
-//      debugsCode(){
-//          `{name} debugs {student.name}'s code on {subject}`
-//      }
-//  }
-
-//  const nicole = new TeamLeads ({
-//     name:'Nico',
-//     age:20,
-//     location:'hong-kong',
-//     specialty:'Back-end',
-//     favLanguage:'C#',
-//     catchPhrase:'its boring like disneyland',
-    //    gradClassName:'and7',
-    //    favInstructor:'kris'
-// })
-
-// const Sarah = new TeamLeads ({
-//     name:'Sarah',
-//     age:24,
-//     location:'South Korea',
-//     specialty:'Front-end',
-//     favLanguage:'C',
-//     catchPhrase:'Each day I learn some more',
-    //    gradClassName:'web8',
-    //    favInstructor:'earl'
-// })
+//conole.logs
+console.log(mico.speak())
+console.log(earl.demo('cotlin'))
+console.log(kris.grade(phil))
+//console.log(listsSubjects)
+console.log(ted.PRAssignment(ted))
+console.log(phil.sprintChallenge(phil))
+console.log(nicole.standUp(nicole), 'WebPT9')
